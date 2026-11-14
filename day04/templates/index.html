@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Neuron Activity Simulator</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <main class="container">
+    <header><span class="eyebrow">DAY 04 · FLASK WEB APP</span><h1>🧠 Neuron Activity Simulator</h1>
+      <p>Explore how different electrical stimuli affect a neuron using the Leaky Integrate-and-Fire model.</p></header>
+    <section class="panel">
+      <form method="post">
+        <label for="pattern">Select a stimulus pattern</label>
+        <div class="controls">
+          <select id="pattern" name="pattern">
+            {% for pattern in patterns %}
+              <option value="{{ pattern }}" {% if pattern == name %}selected{% endif %}>{{ pattern }}</option>
+            {% endfor %}
+          </select>
+          <button type="submit">Run Simulation</button>
+        </div>
+      </form>
+    </section>
+    <section class="stats">
+      <div class="panel stat"><span>Selected pattern</span><strong>{{ name }}</strong></div>
+      <div class="panel stat"><span>Number of spikes</span><strong>{{ spike_count }}</strong></div>
+      <div class="panel stat"><span>Duration</span><strong>{{ '%.1f'|format(duration_s) }} s</strong></div>
+    </section>
+    <section class="panel plot"><h2>Membrane potential over time</h2>
+      <div class="svg-container">{{ graph | safe }}</div>
+      <p class="hint">Yellow dots mark spike times. The blue/purple/orange line shows the recorded membrane voltage after reset.</p>
+    </section>
+    <section class="panel"><h2>First spike times</h2>
+      <p>{% if first_spikes %}{{ first_spikes | join(', ') }} ms{% else %}No spikes detected.{% endif %}</p>
+    </section>
+    <footer>Based on the original Day 03 Python simulation · LIF model</footer>
+  </main>
+</body>
+</html>

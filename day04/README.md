@@ -96,3 +96,57 @@ Prompts used during development included:
 ## Conclusion
 
 This project demonstrates how an existing scientific Python program can be extended into a web application while preserving its original computational logic.
+
+
+## Day 05 – Automated Testing
+
+As part of the Day 05 assignment, automated tests were added to verify the business logic of the Neuron Activity Simulator using pytest.
+
+The existing simulation logic and Flask web application were preserved without modification during this assignment.
+
+### Tested Functions
+
+| Function | Test Description |
+|---|---|
+| `load_stimuli()` | Correct loading of current values from a CSV file |
+| `update_voltage()` | Stability of the resting membrane potential |
+| `update_voltage()` | Membrane voltage response to positive current |
+| `update_voltage()` | Membrane voltage response to negative current |
+| `update_voltage()` | Voltage leak toward the resting potential |
+| `simulate_neuron()` | Absence of spikes without stimulation |
+| `simulate_neuron()` | Spike generation and voltage reset |
+| `simulate_neuron()` | Correct output lengths and simulation time steps |
+
+### Running the Tests
+
+From the `day04` directory, install the required dependencies:
+
+```bash
+python -m pip install -r requirements.txt
+```
+
+Run the automated tests:
+
+```bash
+python -m pytest test_main.py -v
+```
+
+### Test Results
+
+All eight automated tests passed successfully.
+
+- Total tests: 8
+- Passed: 8
+- Failed: 0
+- Success rate: 100%
+- Execution time: 5.52 seconds
+- Python version: 3.14.0
+- pytest version: 9.2.0
+
+### Conclusion
+
+The automated tests verify the expected behavior of the core Leaky Integrate-and-Fire (LIF) simulation logic and help detect potential errors when modifying the application in the future.
+
+### AI Assistance
+
+ChatGPT was used to assist with designing the automated tests, understanding pytest, and documenting the testing process. All tests were executed locally and their results were verified.

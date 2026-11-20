@@ -64,8 +64,8 @@ def update_voltage(voltage, current):
     """Calculate membrane voltage."""
 
     change = (DT / TAU) * (
-        RESTING - voltage + RESISTANCE * current
-    )
+        RESTING - voltage + RESISTANCE * current)
+    
 
     return voltage + change
 
